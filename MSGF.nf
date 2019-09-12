@@ -29,8 +29,9 @@ process msgfPlus {
 	afterScript "rm -r *"
 
 	script:
-    """
+	"""
 	java -Xmx8g -jar /root/MSGFPlus.jar -s ${spectra_file} -d ${databaseFile} -tda 1 -ntt 1 -mod ${modFile} -o ${spectra_file.name.replaceAll(/.txt/, '')}.mzid		
+	java -Xmx1g -jar /root/MSGFPlus.jar edu.ucsd.msjava.ui.MzIDToTsv -i ${spectra_file.name.replaceAll(/.txt/, '')}.mzid -showDecoy 1
 	"""
 
 }
